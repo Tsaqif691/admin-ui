@@ -1,6 +1,6 @@
 import OverviewSVG from "../../assets/icons/Overview.svg?react";
 import TransactionSVG from "../../assets/icons/Transaction.svg?react";
-import BalanceSVG from "../../assets/icons/wallet.svg?react";
+import BalanceSVG from "../../assets/icons/Wallet.svg?react";
 import BillSVG from "../../assets/icons/Bill.svg?react";
 import ExpenseSVG from "../../assets/icons/Expencces.svg?react";
 import GoalSVG from "../../assets/icons/Goal.svg?react";
@@ -24,7 +24,7 @@ import ArrowUpRightSVG from "../../assets/icons/arrow-up-right.svg?react";
 import EditSVG from "../../assets/icons/edit.svg?react";
 import MastercardSVG from "../../assets/icons/Mastercard-Logo.svg?react";
 import VisaSVG from "../../assets/icons/Visa_Logo.svg?react";
-import TargetSVG from "../../assets/icons/target.svg?react";
+import TargetSVG from "../../assets/icons/Target.svg?react";
 import AwardSVG from "../../assets/icons/Award.svg?react";
 
 const createIcon =

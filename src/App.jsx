@@ -1,6 +1,6 @@
 import "./App.css";
-import SignInPage from "./pages/signin";
-import SignUpPage from "./pages/signup";
+import SignInPage from "./pages/signIn";
+import SignUpPage from "./pages/SignUp";
 import ErrorPage from "./pages/error";
 import DashboardPage from "./pages/dashboard";
 import BalancePage from "./pages/balance";

@@ -1,6 +1,6 @@
 import OverviewSVG from "../../assets/icons/Overview.svg?react";
 import TransactionSVG from "../../assets/icons/Transaction.svg?react";
-import BalanceSVG from "../../assets/icons/Wallet.svg?react";
+import BalanceSVG from "../../assets/icons/wallet.svg?react";
 import BillSVG from "../../assets/icons/Bill.svg?react";
 import ExpenseSVG from "../../assets/icons/Expencces.svg?react";
 import GoalSVG from "../../assets/icons/Goal.svg?react";

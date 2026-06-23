@@ -2,7 +2,7 @@ import React from "react";
 import Card from "../Element/Card";
 import DotsMobileStepper from "../Element/DotsMobileStepper";
 import { Link } from "react-router-dom";
-import Icon from "../Element/icon";
+import Icon from "../Element/Icon";
 
 function CardBalance(props) {
   const { data } = props;

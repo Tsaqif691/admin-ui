@@ -1,6 +1,6 @@
 import React from "react";
 import Card from "../Element/Card";
-import Icon from "../Element/icon";
+import Icon from "../Element/Icon";
 import CompositionExample from "../Element/CompositionExample";
 
 function CardGoal(props) {

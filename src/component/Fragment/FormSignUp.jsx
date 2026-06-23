@@ -1,6 +1,6 @@
 import React from 'react'
-import Button from '../element/Button'
-import LabeledInput from '../element/LabeledInput'
+import Button from '../Element/Button'
+import LabeledInput from '../Element/LabeledInput'
 import { Link } from "react-router-dom";
 
 function FormSignUp() {

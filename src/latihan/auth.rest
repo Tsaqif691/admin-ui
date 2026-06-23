@@ -9,4 +9,4 @@ Content-Type: application/json
 
 ### logout
 POST https://jwt-auth-eight-neon.vercel.app/logout
-Authorization: Bearer REFRESH_TOKEN
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOjI1OCwibmFtZSI6Ik1PSCIsImVtYWlsIjoiMTExMjAyMzE0ODk5QG1ocy5kaW51cy5hYy5pZCIsImlhdCI6MTc4MjE0MzE0MCwiZXhwIjoxNzgyMjI5NTQwfQ.ZfOD3BCc_H5GrJfSk1KI-Vvyucc2w40rvm-pMu2fqBc

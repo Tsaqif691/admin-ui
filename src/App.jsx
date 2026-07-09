@@ -11,7 +11,7 @@ import {
   RouterProvider,
 } from "react-router-dom";
 import { useContext } from "react";
-import { AuthContext } from "./context/authContext";
+import { AuthContext } from "./Context/authContext";
 import ExpensePage from "./pages/expense";
 
 function App() {

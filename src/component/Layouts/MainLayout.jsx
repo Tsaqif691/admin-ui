@@ -4,12 +4,12 @@ import Input from "../Element/Input";
 import NotificationsIcon from '@mui/icons-material/Notifications';
 import Icon from "../Element/Icon";
 import { NavLink } from "react-router-dom";
-import { ThemeContext } from "../../context/themeContext";
-import { AuthContext } from "../../context/authContext";
+import { ThemeContext } from "../../Context/themeContext";
+import { AuthContext } from "../../Context/authContext";
 import { logoutService } from "../../services/authService";
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
-import { DarkModeContext } from "../../context/darkModeContext";
+import { DarkModeContext } from "../../Context/darkModeContext";
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 

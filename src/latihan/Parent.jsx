@@ -1,6 +1,6 @@
 import React, { useContext, useState } from "react";
 import Child from "./Child";
-import { CounterContext } from "../context/counterContext";
+import { CounterContext } from "../Context/counterContext";
 
 // Component Parent
 function Parent() {

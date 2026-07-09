@@ -16,7 +16,7 @@ import {
   expensesStatistics,
 } from "../data";
 import { goalService, billService } from "../services/dataService";
-import { AuthContext } from "../context/authContext";
+import { AuthContext } from "../Context/authContext";
 import AppSnackbar from "../component/Element/AppSnackbar";
 
 function dashboard() {

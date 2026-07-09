@@ -2,9 +2,9 @@ import React, { useContext, useState } from "react";
 import AuthLayout from "../component/Layouts/AuthLayout";
 import FormSignIn from "../component/Fragment/FormSignIn";
 import { loginService } from "../services/authService";
-import { AuthContext } from "../context/authContext";
+import { AuthContext } from "../Context/authContext";
 import AppSnackbar from "../component/Element/AppSnackbar";
-import { DarkModeContext } from "../context/darkModeContext"; 
+import { DarkModeContext } from "../Context/darkModeContext"; 
 import DarkModeOutlinedIcon from '@mui/icons-material/DarkModeOutlined';
 import LightModeOutlinedIcon from '@mui/icons-material/LightModeOutlined';
 

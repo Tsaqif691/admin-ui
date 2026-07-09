@@ -4,7 +4,7 @@ import MobileStepper from "@mui/material/MobileStepper";
 import Button from "@mui/material/Button";
 import KeyboardArrowLeft from "@mui/icons-material/KeyboardArrowLeft";
 import KeyboardArrowRight from "@mui/icons-material/KeyboardArrowRight";
-import { ThemeContext } from "../../Context/themeContext";
+import { ThemeContext } from "../../context/themeContext";
 
 export default function DotsMobileStepper(props) {
   const { data } = props;

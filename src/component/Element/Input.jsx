@@ -13,7 +13,8 @@ function Input(props) {
     <>
       <input
         className={`py-3 pl-4 text-sm rounded-md w-full border text-gray-01 
-          ${border} focus:border-black focus:outline-none focus:ring-0 
+          dark:text-white dark:bg-[#2d2d2d] dark:border-gray-600 dark:placeholder-gray-400
+          ${border} focus:border-black dark:focus:border-white focus:outline-none focus:ring-0 
           ${backgroundColor || ""}
         `}
         id={id}

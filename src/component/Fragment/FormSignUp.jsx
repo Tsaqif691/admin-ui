@@ -1,28 +1,87 @@
-import React from 'react'
-import Button from '../Element/Button'
-import LabeledInput from '../Element/LabeledInput'
+import React, { useState } from 'react';
+import Button from '../Element/Button';
+import LabeledInput from '../Element/LabeledInput';
 import { Link } from "react-router-dom";
+import { useFormik } from 'formik';
+import axios from 'axios';
 
 function FormSignUp() {
+  const [isLoading, setIsLoading] = useState(false);
+  const [msg, setMsg] = useState('');
+  const [msgType, setMsgType] = useState(''); // 'success' atau 'error'
+
+  const formik = useFormik({
+    initialValues: {
+      name: '',
+      email: '',
+      password: '',
+    },
+    validate: (values) => {
+      const errors = {};
+      if (!values.name) {
+        errors.name = 'Nama wajib diisi';
+      }
+      if (!values.email) {
+        errors.email = 'Email wajib diisi';
+      } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.email)) {
+        errors.email = 'Format email tidak valid';
+      }
+      if (!values.password) {
+        errors.password = 'Password wajib diisi';
+      }
+      return errors;
+    },
+    onSubmit: async (values) => {
+      setIsLoading(true);
+      setMsg(''); 
+      setMsgType('');
+
+      try {
+        const response = await axios.post('https://jwt-auth-eight-neon.vercel.app/register', {
+          name: values.name,
+          email: values.email,
+          password: values.password
+        });
+        
+        // Jika berhasil
+        setMsgType('success');
+        setMsg('Register Berhasil');
+        formik.resetForm();
+      } catch (error) {
+        // Jika gagal (email sudah ada, dll)
+        setMsgType('error');
+        setMsg('Email sudah pernah digunakan sebelumnya');
+      } finally {
+        setIsLoading(false);
+      }
+    },
+  });
+
   return (
     <>
       {/* 1. Tambahkan Judul Create an account */}
       <div className="mt-8 mb-8 flex justify-center">
-        <h1 className="text-xl font-bold text-defaultBlack">Create an account</h1>
+        <h1 className="text-xl font-bold text-defaultBlack">Create an Account</h1>
       </div>
 
       {/* form start */}
       <div>
-        <form action="">
+        <form onSubmit={formik.handleSubmit}>
           {/* Input 1: Name */}
           <div className="mb-6">
             <LabeledInput
               label="Name"
               id="name"
               type="text"
-              placeholder="Tsaqif Akmal"
+              placeholder="John Doe"
               name="name"
+              value={formik.values.name}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
             />
+            {formik.touched.name && formik.errors.name && (
+              <span className="text-red-500 text-xs">{formik.errors.name}</span>
+            )}
           </div>
 
           {/* Input 2: Email Address */}
@@ -33,7 +92,13 @@ function FormSignUp() {
               type="email"
               placeholder="hello@example.com"
               name="email"
+              value={formik.values.email}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
             />
+            {formik.touched.email && formik.errors.email && (
+              <span className="text-red-500 text-xs">{formik.errors.email}</span>
+            )}
           </div>
 
           {/* Input 3: Password */}
@@ -44,24 +109,26 @@ function FormSignUp() {
               type="password"
               placeholder="••••••••••••"
               name="password"
+              value={formik.values.password}
+              onChange={formik.handleChange}
+              onBlur={formik.handleBlur}
             />
+            {formik.touched.password && formik.errors.password && (
+              <span className="text-red-500 text-xs">{formik.errors.password}</span>
+            )}
           </div>
 
-          {/* 2. Ganti Checkbox menjadi teks Terms of Service */}
-          <div className="mb-6 text-sm text-gray-02">
-            By continuing, you agree to our <a href="#" className="text-primary font-medium">terms of service.</a>
-          </div>
-
-          {/* 3. Ganti nama tombol menjadi Sign up */}
-          <Button>Sign up</Button>
+          {/* 3. Ganti nama tombol menjadi Register sesuai desain soal */}
+          <Button type="submit" disabled={isLoading}>
+            {isLoading ? 'Loading...' : 'Register'}
+          </Button>
         </form>
       </div>
       {/* form end */}
 
       {/* teks divider start */}
-      <div className=" my-9 px-7 flex flex-col justify-center items-center text-xs text-gray-03">
+      <div className=" my-9 px-7 flex flex-col justify-center items-center text-xs text-gray-03 relative">
         <div className="border border-gray-05 w-full"></div>
-        {/* 4. Ganti teks divider */}
         <div className="px-2 bg-special-mainBg absolute">or sign up with</div>
       </div>
       {/* teks divider end */}
@@ -73,26 +140,13 @@ function FormSignUp() {
             <svg
               className="h-6 w-6 mr-2"
               xmlns="http://www.w3.org/2000/svg"
-              width="800"
-              height="800"
               viewBox="-0.5 0 48 48"
+              version="1.1"
             >
-              <path
-                d="M9.82727273,24 C9.82727273,22.4757333 10.0804318,21.0144 10.5322727,19.6437333 L2.62345455,13.6042667 C1.08206818,16.7338667 0.213636364,20.2602667 0.213636364,24 C0.213636364,27.7365333 1.081,31.2608 2.62025,34.3882667 L10.5247955,28.3370667 C10.0772273,26.9728 9.82727273,25.5168 9.82727273,24"
-                fill="#FBBC05"
-              />
-              <path
-                d="M23.7136364,10.1333333 C27.025,10.1333333 30.0159091,11.3066667 32.3659091,13.2266667 L39.2022727,6.4 C35.0363636,2.77333333 29.6954545,0.533333333 23.7136364,0.533333333 C14.4268636,0.533333333 6.44540909,5.84426667 2.62345455,13.6042667 L10.5322727,19.6437333 C12.3545909,14.112 17.5491591,10.1333333 23.7136364,10.1333333"
-                fill="#EB4335"
-              />
-              <path
-                d="M23.7136364,37.8666667 C17.5491591,37.8666667 12.3545909,33.888 10.5322727,28.3562667 L2.62345455,34.3946667 C6.44540909,42.1557333 14.4268636,47.4666667 23.7136364,47.4666667 C29.4455,47.4666667 34.9177955,45.4314667 39.0249545,41.6181333 L31.5177727,35.8144 C29.3995682,37.1488 26.7323182,37.8666667 23.7136364,37.8666667"
-                fill="#34A853"
-              />
-              <path
-                d="M46.1454545,24 C46.1454545,22.6133333 45.9318182,21.12 45.6113636,19.7333333 L23.7136364,19.7333333 L23.7136364,28.8 L36.3181818,28.8 C35.6879545,31.8912 33.9724545,34.2677333 31.5177727,35.8144 L39.0249545,41.6181333 C43.3393409,37.6138667 46.1454545,31.6490667 46.1454545,24"
-                fill="#4285F4"
-              />
+              <path d="M9.82727273,24 C9.82727273,22.4757333 10.0804318,21.0144 10.5322727,19.6437333 L2.62345455,13.6042667 C1.08206818,16.7338667 0.213636364,20.2602667 0.213636364,24 C0.213636364,27.7365333 1.081,31.2608 2.62025,34.3882667 L10.5247955,28.3370667 C10.0772273,26.9728 9.82727273,25.5168 9.82727273,24" fill="#FBBC05"/>
+              <path d="M23.7136364,10.1333333 C27.025,10.1333333 30.0159091,11.3066667 32.3659091,13.2266667 L39.2022727,6.4 C35.0363636,2.77333333 29.6954545,0.533333333 23.7136364,0.533333333 C14.4268636,0.533333333 6.44540909,5.84426667 2.62345455,13.6042667 L10.5322727,19.6437333 C12.3545909,14.112 17.5491591,10.1333333 23.7136364,10.1333333" fill="#EB4335"/>
+              <path d="M23.7136364,37.8666667 C17.5491591,37.8666667 12.3545909,33.888 10.5322727,28.3562667 L2.62345455,34.3946667 C6.44540909,42.1557333 14.4268636,47.4666667 23.7136364,47.4666667 C29.4455,47.4666667 34.9177955,45.4314667 39.0249545,41.6181333 L31.5177727,35.8144 C29.3995682,37.1488 26.7323182,37.8666667 23.7136364,37.8666667" fill="#34A853"/>
+              <path d="M46.1454545,24 C46.1454545,22.6133333 45.9318182,21.12 45.6113636,19.7333333 L23.7136364,19.7333333 L23.7136364,28.8 L36.3181818,28.8 C35.6879545,31.8912 33.9724545,34.2677333 31.5177727,35.8144 L39.0249545,41.6181333 C43.3393409,37.6138667 46.1454545,31.6490667 46.1454545,24" fill="#4285F4"/>
             </svg>
             Continue with Google
           </span>
@@ -103,13 +157,23 @@ function FormSignUp() {
       {/* 5. Ganti link di footer start */}
       <div className="flex justify-center text-sm text-gray-02">
         <span>Already have an account?</span> 
-        <Link to="/login" className="text-primary font-bold">
-          Sign in here
+        <Link to="/login" className="text-primary font-bold ml-1">
+          Sign In Here
         </Link>
       </div>
       {/* link end */}
+
+      {/* UI Notification (Muncul di pojok kiri bawah sesuai screenshot) */}
+      {msg && (
+        <div className={`fixed bottom-5 left-5 px-4 py-3 rounded-md shadow-lg flex items-center justify-between min-w-[300px] ${
+          msgType === 'success' ? 'bg-[#1E8A5C] text-white' : 'bg-[#D93F3C] text-white'
+        }`}>
+          <span>{msg}</span>
+          <button onClick={() => setMsg('')} className="ml-4 font-bold">X</button>
+        </div>
+      )}
     </>
   )
 }
 
-export default FormSignUp
+export default FormSignUp;

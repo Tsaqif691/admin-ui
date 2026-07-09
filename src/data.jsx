@@ -277,8 +277,8 @@ export const balances = [
 
 export const goals = {
   id: 1,
-  targetAmount: 20000,
-  presentAmount: 12500,
+  target_amount: 20000,
+  present_amount: 12500,
   month: 5,
   year: 2023,
 };

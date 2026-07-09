@@ -6,8 +6,6 @@ html {
 
 @import "tailwindcss";
 
-/* Aktifkan dark mode berbasis class (.dark), bukan prefers-color-scheme,
-   supaya sinkron dengan toggle manual di DarkModeContext */
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
